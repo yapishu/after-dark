@@ -1,4 +1,4 @@
-![After Dark for Hugo theme screenshot](https://cloud.githubusercontent.com/assets/440298/22617041/a7a9491a-eaf5-11e6-9acd-15da80cb9e71.png)
+![Theme screenshot](https://cloud.githubusercontent.com/assets/440298/22641591/4f3166d4-ec92-11e6-9022-de351c1e2938.png "After Dark Hugo in Safari")
 
 > Simplicity is the ultimate sophistication<br>
 > --- Leonardo da Vinci
@@ -11,7 +11,7 @@ Head to [Hack Cabin](http://hackcabin.com) for a production example running on A
 
 - Dark theme intended for low-light reading
 - Entire page served in a single HTTP request (including favicon)
-- Grid layouts and more using [hack.css](http://hackcss.com)
+- Customizable grid layouts and more using [hack.css](http://hackcss.com)
 - Responsive typography optimized for mobile, tablet and desktop
 - Gentle content fade-in using CSS keyframe animation
 - [Schema.org Structured Data](https://moz.com/learn/seo/schema-structured-data) for site nav and posts
@@ -19,21 +19,21 @@ Head to [Hack Cabin](http://hackcabin.com) for a production example running on A
 - Facebook share author name attribution using `meta name="author"`
 - Google Analytics using the [internal async template](https://gohugo.io/extras/analytics)
 - Post comments with [Disqus](https://disqus.com/) using the [internal template](https://gohugo.io/extras/comments)
-- Rich post bylines including links to category and tag taxonomy listings, author, word count and reading time
+- Post reading time and update notice set user expectations
+- Rich post bylines including links to category and tag taxonomy listings, author and word count
 - [Block Templates](https://gohugo.io/templates/blocks/) for foolproof layouts
 - Extensible [taxonomy terms template](https://gohugo.io/templates/terms)
-- Related posts feature guides users to similar content
-- Configurable [menu system](https://gohugo.io/extras/menus/) for global site navigation
+- Related posts feature to guide readers to similar content
+- Configurable [Section Menu](#section-menu) for global site navigation
 - Simple list pagination with page indicators
-- Custom page meta descriptions and rel meta for SEO control
+- Optional [Table of Contents for posts](#using-the-table-of-contents)
 - Site verification with Google, Bing and Yandex
+- Custom page meta descriptions and links for [improved SEO and UX](#improving-seo-and-ux)
 - Default 404 page with MP4 background video
 - Full site keyboard accessibility
 - No JavaScript required unless Analytics or Disqus enabled
 
 ## Getting started
-
-[Install Hugo](https://gohugo.io/#action) and create a new site:
 
 ```shell
 brew update && brew install hugo
@@ -53,13 +53,14 @@ Copy the custom archetypes to your site:
 cp themes/after-dark/archetypes/* archetypes
 ```
 
-And include the following in your site's `config.toml`:
+Include settings in your site's `config.toml`:
 
 ```toml
 baseurl = "https://c74ce35e.ngrok.io" # Controls base URL
 languageCode = "en-US" # Controls html lang attribute
 title = "After Dark" # Homepage title and page title suffix
 paginate = 5 # Number of posts to show before paginating
+images = [] # Optional, adds a default OpenGraph image
 
 enableRobotsTXT = true # Suggested, enable robots.txt file
 googleAnalytics = "" # Optional, add tracking Id for analytics
@@ -67,7 +68,7 @@ disqusShortname = "" # Optional, add Disqus shortname for comments
 SectionPagesMenu = "main" # Enable menu system for lazy bloggers
 
 [params]
-  description = "" # Suggested, controls homepage description meta
+  description = "" # Suggested, controls default description meta
   author = "" # Optional, controls author name display on posts
   show_menu = false # Optional, set false to disable menu entirely
   powered_by = true # Optional, set false to disable credits
@@ -78,7 +79,11 @@ SectionPagesMenu = "main" # Enable menu system for lazy bloggers
     yandex_verify = "" # Optional, Yandex verification code
 ```
 
-Configure menu in `config.toml` if desired:
+## Section Menu
+
+Theme uses [Section Menu for Lazy Bloggers](https://gohugo.io/extras/menus/#section-menu-for-the-lazy-blogger) to produce global site navigation, if enabled.
+
+To customize the menu, update the settings in `config.toml` like:
 
 ```toml
 [menu]
@@ -94,7 +99,7 @@ Configure menu in `config.toml` if desired:
     url = "/post/"
 ```
 
-Or add pages to the menu using front matter:
+Or update the menu using front matter from your pages:
 
 ```toml
 menu = "main"
@@ -132,14 +137,61 @@ Test how things are looking during development using a combination of the [Faceb
 
 **Gotcha:** Relative source URLs are not currently permitted.
 
+## Improving SEO and UX
+
+Aside from OpenGraph and microformats After Dark uses long-standing markup concepts. Learn to use them to improve your site's SEO and usability.
+
+### Using Custom Descriptions
+
+To help your content stand out in SERPs and enable users to [quickly grok the subject matter](https://moz.com/learn/seo/meta-description) add a `description` to the front matter of your post or page:
+
+```toml
+description = "Become a Digital Nomad in Bali: The Lost Guide"
+```
+
+Descriptions will also be used to accent the content summaries After Dark displays in lists when the site is generated. If no custom description is provided After Dark will fallback to the description provided in `config.toml`.
+
+### Setting Last Modified
+
+Let your readers and search engines know when posts were last modified. To do so add `publishdate` to your page front matter and update `date` anytime you make an update to a post. Updates will be made visible to readers and search engines alike using call-outs on the page, Schema Structured Data and via the `lastmod` setting your `sitemap.xml` file.
+
+### Using Link Types
+
+For related content split across multiple pages in a sequence After Dark supports use of `prev` and `next` settings in your front matter. Learn more about [link types](http://devdocs.io/html/link_types).
+
+## Using the Table of Contents
+
+For longer posts its possible to automatically generate a Table of Contents. The feature uses the HTML5 [`details` element](http://devdocs.io/html/element/details) and is opt-in on a per post basis. To add a Table of Contents to a post set the following in the post front matter:
+
+```toml
+toc = true
+```
+
+To hide the Table of Contents set `toc = false` or simply remove the setting from the post front matter.
+
+## Customizing CSS
+
+To customize CSS without having to tamper with theme files do the following:
+
+1. Create a `critical-custom.css.html` in your site's `layouts/partials directory`.
+2. Add your customizations inside a `<style media="screen"></style>` element.
+
+Example customization file:
+
+```html
+<style media="screen">
+  .hack ul li {
+    margin: 0;
+  }
+</style>
+```
+
+Your customizations will automatically be added to generated pages, inline in the document `HEAD`. Thanks to [@rsommerard](https://github.com/rsommerard) for making the suggestion.
+
 ## Upgrading hack.css
 
 The specific version of [`hack.css`](hackcss.com) used is _pinned_ in the `package.json` dependency manifest. To check for updates do an `npm i` and run `npm run ncu`.
 
 If an update is available consider taking the automatic update, but keep the version pinned in the manifest. Once the new `hack` dependency version is pulled down to the `node_modules` directory, copy the contents of `hack.css` and `dark.css` into the `critical-vendor.css.html` file.
 
-Once the vendor file is updated pop open your favorite dev tools and test the changes by previewing your site on mobile, tablet and desktop at different display resolutions and orientations. Make any tweaks necessary to the `hack.css` style overrides indicated in `critical-custom.css.html`.
-
-## Contributing
-
-Issues have been disabled for this repo. If you feel passionate something needs to be changed please feel free to submit a pull with your suggested changes.
+Once the vendor file is updated pop open your favorite dev tools and test the changes by previewing your site on mobile, tablet and desktop at different display resolutions and orientations. Make any tweaks necessary to the `hack.css` style overrides indicated in `critical-theme.css.html`. And finally adjust any [Customized CSS](#customizing-css).
