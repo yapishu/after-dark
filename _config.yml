@@ -1,6 +1,6 @@
 title: After Dark
-description: A retro dark theme for Hugo
-google_analytics: 
+description: A retro dark theme for the Hugo static site generator
+google_analytics:
 show_downloads: true
 theme: jekyll-theme-cayman
 
