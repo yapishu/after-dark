@@ -184,7 +184,7 @@ To block individual pages from being indexed simply add `nofollow` to your page'
 noindex = true
 ```
 
-And, finally, if you're using Hugo `v0.18` or better, you can also add an `_index.md` file with the `noindex` front matter to control indexing for specific section sections:
+And, finally, if you're using Hugo `v0.18` or better, you can also add an `_index.md` file with the `noindex` front matter to control indexing for specific sections:
 
 ```shell
 ├── content
@@ -196,7 +196,7 @@ And, finally, if you're using Hugo `v0.18` or better, you can also add an `_inde
 │       └── return-flying-toasters.md
 ```
 
-Read more about how to [block search indexing with meta tags](https://support.google.com/webmasters/answer/93710).
+To learn more about how this works, read [block search indexing with meta tags](https://support.google.com/webmasters/answer/93710).
 
 ## Using the Table of Contents
 
