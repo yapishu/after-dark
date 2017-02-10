@@ -5,7 +5,7 @@
 
 ## Demo
 
-Head to [Hack Cabin](http://hackcabin.com) for a production example running on AWS. There you can learn how After Dark is used within the Hack Cabin [site architecture](http://hackcabin.com/post/initial-commit/) as well.
+Head to [Hack Cabin](https://hackcabin.com) for a **production example** running on AWS with [HTTP/2 enabled](https://habd.as/zero-to-http-2-aws-hugo/) and read more about the Hack Cabin [site architecture](https://hackcabin.com/post/initial-commit/).
 
 ## Features
 
