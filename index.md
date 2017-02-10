@@ -57,7 +57,6 @@ baseurl = "https://c74ce35e.ngrok.io" # Controls base URL
 languageCode = "en-US" # Controls html lang attribute
 title = "After Dark" # Homepage title and page title suffix
 paginate = 5 # Number of posts to show before paginating
-images = [] # Optional, adds a default OpenGraph image
 
 enableRobotsTXT = true # Suggested, enable robots.txt file
 googleAnalytics = "" # Optional, add tracking Id for analytics
@@ -67,8 +66,9 @@ SectionPagesMenu = "main" # Enable menu system for lazy bloggers
 [params]
   description = "" # Suggested, controls default description meta
   author = "" # Optional, controls author name display on posts
-  show_menu = false # Optional, set false to disable menu entirely
+  show_menu = false # Optional, set true to enable section menu
   powered_by = true # Optional, set false to disable credits
+  images = [] # Optional, adds a default OpenGraph image
 ```
 
 ## Section Menu
@@ -180,11 +180,12 @@ Though it's possible to block search indexing from a `robots.txt` file, After Da
 If you do not like this behavior you may override the defaults by setting `params.noindex_kinds` in your site's `config.toml`, e.g.
 
 ```
-noindex_kinds = [
-  "section",
-  "taxonomy",
-  "taxonomyTerm"
-]
+[params]
+  noindex_kinds = [
+    "section",
+    "taxonomy",
+    "taxonomyTerm"
+  ]
 ```
 
 To block individual pages from being indexed simply add `nofollow` to your page's front matter and set the value to `true`, like:
