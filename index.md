@@ -10,8 +10,10 @@ Head to [Hack Cabin](https://hackcabin.com) for a **production example** running
 ## Features
 
 - Dark theme intended for low-light reading
-- Entire page served in a single HTTP request (including favicon)
+- Mobile-optimized to limit number of HTTP round-trips
+- [Intelligent lazyloading](#intelligent-lazyloading) with [lazysizes](https://github.com/aFarkas/lazysizes)
 - Responsive typography optimized for mobile, tablet and desktop
+- [Related Content](#related-content) increases page views and reader loyalty
 - SEO-optimized using OpenGraph, [Schema Structured Data](https://moz.com/learn/seo/schema-structured-data) and Meta tags
 - Google Analytics using the [internal async template](https://gohugo.io/extras/analytics)
 - Post comments with [Disqus](https://disqus.com/) using the [internal template](https://gohugo.io/extras/comments)
@@ -21,14 +23,12 @@ Head to [Hack Cabin](https://hackcabin.com) for a **production example** running
 - Rich post bylines including links to category and tag taxonomy listings, author and word count
 - [Block Templates](https://gohugo.io/templates/blocks/) for foolproof layouts
 - Extensible [taxonomy terms template](https://gohugo.io/templates/terms)
-- Related posts feature to guide readers to similar content
 - Configurable [Section Menu](#section-menu) for global site navigation
 - Simple list pagination with page indicators
 - Optional [Table of Contents for posts](#using-the-table-of-contents)
 - Site verification with Google, Bing and Yandex
 - Default 404 page with MP4 background video
 - Full site keyboard accessibility
-- No JavaScript required unless Analytics or Disqus enabled
 
 ## Getting started
 
@@ -96,6 +96,53 @@ Or update the menu using front matter from your pages:
 ```toml
 menu = "main"
 weight = 3
+```
+
+## Intelligent Lazyloading
+
+Improve user experience and decrease bandwidth consumption. By lazyloading you can increase your site's page views, time spent on your site and reader loyalty.
+
+Lazyloading prioritizes when and how images and more are downloaded, making perceived performance faster and reducing overall bandwidth consumption. When activated, lazyloading will begin working automatically. No JavaScript configuration is necessary.
+
+To activate lazyloading, add the `lazyload` value to the `class` attribute of your images/iframes in conjunction with a `data-src` and/or `data-srcset` attribute:
+
+```html
+<!-- non-responsive -->
+<img data-src="image.jpg" class="lazyload">
+```
+
+```html
+<!-- responsive with automatic sizes calculation -->
+<img
+  data-sizes="auto"
+  data-src="image2.jpg"
+  data-srcset="image1.jpg 300w, image2.jpg 600w, image3.jpg 900w"
+  class="lazyload">
+```
+
+```html
+<!-- iframe example -->
+<iframe frameborder="0"
+  class="lazyload"
+  allowfullscreen=""
+  data-src="//www.youtube.com/embed/ZfV-aYdU4uE">
+</iframe>
+```
+
+Additional information and examples are available on the [lazysizes](https://github.com/aFarkas/lazysizes) repository on GitHub.
+
+**Caveat:** Currently this feature only supports lazy-lazyloading of _content_. If no lazyloaded content is detected on a page the feature will not be activated and the lazysizes library will not be loaded.
+
+## Related Content
+
+Promote more of your content to your site visitors. By offering your readers more content that's relevant to them you can increase your site's page views, the time spent on your site and reader loyalty.
+
+Related content surfaces content across sections by matching taxonomy tags. If if finds related content it will automatically output it in reverse chronological order below the byline of your post content.
+
+By default After Dark will display up to 7 items by title along with their reading times. You can limit the number of items displayed by setting the following optional parameter in the `[params]` section of your `config.toml` file:
+
+```toml
+related_content_limit = 5
 ```
 
 ## Using OpenGraph
@@ -177,11 +224,12 @@ Though it's possible to block search indexing from a `robots.txt` file, After Da
 - Taxonomy Pages (e.g. Category and Tag listings)
 - Taxonomy Terms Pages (e.g. Pages listing taxonomies)
 
-If you do not like this behavior you may override the defaults by setting `params.noindex_kinds` in your site's `config.toml`, e.g.
+To customize behavior configure the `noindex_kinds` setting in the `[params]` section of your `config.toml`:
 
 ```
 [params]
   noindex_kinds = [
+    "page",
     "section",
     "taxonomy",
     "taxonomyTerm"
