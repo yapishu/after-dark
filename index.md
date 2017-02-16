@@ -66,9 +66,10 @@ SectionPagesMenu = "main" # Enable menu system for lazy bloggers
 [params]
   description = "" # Suggested, controls default description meta
   author = "" # Optional, controls author name display on posts
+  hide_author = false # Optional, set true to hide author name on posts
   show_menu = false # Optional, set true to enable section menu
   powered_by = true # Optional, set false to disable credits
-  images = [] # Optional, adds a default OpenGraph image
+  images = [] # Suggested, adds default OpenGraph image
 ```
 
 ## Section Menu
@@ -124,7 +125,7 @@ To activate lazyloading, add the `lazyload` value to the `class` attribute of yo
 <!-- iframe example -->
 <iframe frameborder="0"
   class="lazyload"
-  allowfullscreen=""
+  allowfullscreen
   data-src="//www.youtube.com/embed/ZfV-aYdU4uE">
 </iframe>
 ```
@@ -168,7 +169,7 @@ To configure a site-wide OpenGraph image and fallback for posts not specifying t
 
 ```toml
 images = [
-  "https://source.unsplash.com/-09QE4q0ezw/2000x1322" # Optional, OpenGraph image for Node types
+  "https://source.unsplash.com/-09QE4q0ezw/2000x1322" # Default OpenGraph image for site
 ]
 ```
 
