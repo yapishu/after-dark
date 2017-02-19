@@ -1,6 +1,6 @@
 <!-- {{/*
 Usage: {{% outbound "TITLE" "URL" %}}
 */}}-->
-<a rel="nofollow" href="{{ .Get 1 }}" onclick="goog_report_conversion(); trackReferralLink('{{ .Get 1 | replaceRE "^https?://|/go/([^/]+).*" "$1" }}')">
+<a target="_blank" rel="nofollow" href="{{ .Get 1 }}" onclick="goog_report_conversion(); trackReferralLink('{{ .Get 1 | replaceRE "^https?://|/go/([^/]+).*" "$1" }}')">
   {{- .Get 0 | markdownify -}}
 </a>
