@@ -1,4 +1,4 @@
-[Theme screenshot](https://cloud.githubusercontent.com/assets/440298/22641591/4f3166d4-ec92-11e6-9022-de351c1e2938.png "After Dark for Hugo running in Safari on macOS")
+![Theme screenshot](https://cloud.githubusercontent.com/assets/440298/22641591/4f3166d4-ec92-11e6-9022-de351c1e2938.png "After Dark for Hugo running in Safari on macOS")
 
 > Simplicity is the ultimate sophistication<br>
 > --- Leonardo da Vinci
