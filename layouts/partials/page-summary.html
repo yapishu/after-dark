@@ -11,9 +11,6 @@
     <blockquote itemprop="about">{{ .Description }}</blockquote>
   {{ end }}
   <div itemprop="description">
-    {{ .Summary }}
+    {{ .Content }}
   </div>
-  {{ if .Truncated }}
-    <p><a itemprop="url" href="{{ .RelPermalink }}">Read More&nbsp;&raquo;</a></p>
-  {{ end }}
 </article>

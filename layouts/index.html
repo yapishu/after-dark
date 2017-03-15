@@ -6,8 +6,26 @@
 {{ end }}
 {{ define "main" }}
   <header>
-    <h1>{{ .Title }}</h1>
+    <p style="float: right;"><a href="/"><img src="/head.png"></a></p><p style="float: left;"><h1>{{ .Title }}</h1></p>
+    <br><a href="/">home</a> // <a href="/about">about</a><br>shitbloggin with reid scoggin<hr>
   </header>
+  <!-- Start of StatCounter Code for Tumblr -->
+<script type="text/javascript">
+var sc_project=11278184;
+var sc_invisible=1;
+var sc_security="22dddc30";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11278184/0/22dddc30/1/" alt="web
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Tumblr -->
   {{ range (.Paginate (where .Data.Pages "Type" "post")).Pages }}
     {{ partial "page-summary" . }}
   {{ end }}

@@ -5,7 +5,8 @@
   <article itemscope itemtype="http://schema.org/BlogPosting">
     {{ template "_internal/schema.html" . }}
     <header>
-      <h1 itemprop="headline">{{ .Title }}</h1>
+      <p style="float: right;"><a href="/"><img src="/head.png"></a></p><p style="float: left;"><h1>{{ .Title }}</h1></p>
+      <br><a href="/">home</a> // <a href="/about">about</a><br>shitbloggin with reid scoggin<hr>
       <p class="muted">{{ partial "post/meta" . }}</p>
     </header>
     {{ if .Description }}
@@ -23,10 +24,10 @@
     <footer>
       <hr>
       {{ partial "post/byline" . }}
-      {{ partial "post/related-content" . }}
     </footer>
   </article>
 {{ end }}
 {{ define "footer" }}
   {{ partial "powered-by" . }}
+  {{ template "_internal/disqus.html" . }}
 {{ end }}
