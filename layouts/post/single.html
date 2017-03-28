@@ -2,11 +2,28 @@
   {{ partial "menu" . }}
 {{ end }}
 {{ define "main" }}
+<!-- Start of StatCounter Code for Tumblr -->
+<script type="text/javascript">
+var sc_project=11278184;
+var sc_invisible=1;
+var sc_security="22dddc30";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web stats"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11278184/0/22dddc30/1/" alt="web
+stats"></a></div></noscript>
+<!-- End of StatCounter Code for Tumblr -->
   <article itemscope itemtype="http://schema.org/BlogPosting">
     {{ template "_internal/schema.html" . }}
     <header>
-      <p style="float: right;"><a href="/"><img src="/head.png"></a></p><p style="float: left;"><h1>{{ .Title }}</h1></p>
-      <br><a href="/">home</a> // <a href="/about">about</a><br>shitbloggin with reid scoggin<hr>
+        <p style="float: right;"><a href="/"><img src="/head.png"></a></p><p style="float: left;"><h1><a href="/">{{ .Site.Title }}</a></h1></p>
+      <h1 itemprop="headline">{{ .Title }}</h1>
       <p class="muted">{{ partial "post/meta" . }}</p>
     </header>
     {{ if .Description }}
@@ -24,10 +41,10 @@
     <footer>
       <hr>
       {{ partial "post/byline" . }}
+      {{ partial "post/related-content" . }}
     </footer>
   </article>
 {{ end }}
 {{ define "footer" }}
   {{ partial "powered-by" . }}
-  {{ template "_internal/disqus.html" . }}
 {{ end }}
